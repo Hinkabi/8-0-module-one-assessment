@@ -28,7 +28,15 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  //if [] IS EMPTY RETURN EMPTY ARRAY
+  let moviesArr = []
+  for(let movie of movies){
+    moviesArr.push(movie.title)
+  }
+  return moviesArr
+}
+getAllMovieTitles(exampleMovies)
 
 /**
  * getHighestMetascore()
@@ -41,7 +49,16 @@ function getAllMovieTitles() {}
  *  getHighestMetascore(movies);
  *  //> 96
  */
-function getHighestMetascore() {}
+function getHighestMetascore(movies) {
+  let highestMetaScore = 0;
+  for(let i = 0; i < movies.length; i++){
+    if(movies[i].metascore > highestMetaScore){
+      highestMetaScore = movies[i].metascore;
+    }
+  }
+  return Number(highestMetaScore);
+}
+getHighestMetascore(exampleMovies)
 
 /**
  * getAverageIMDBRating()
@@ -54,7 +71,15 @@ function getHighestMetascore() {}
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+function getAverageIMDBRating(movies) {
+  let movieRatingAverage = 0;
+  for(let i = 0; i < movies.length; i++){
+    let allMovieRatings = movies[i].imdbRating;
+    movieRatingAverage += allMovieRatings/movies.length;
+    
+  }
+  return movieRatingAverage;
+}
 
 /**
  * countByRating()
@@ -67,7 +92,17 @@ function getAverageIMDBRating() {}
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+function countByRating(movies) {
+  let ratingCountObj = {};
+  for(let i = 0; i <movies.length; i++){
+    if(!ratingCountObj[movies[i].rated]){
+      ratingCountObj[movies[i].rated] = 1
+    } else {
+      ratingCountObj[movies[i].rated] += 1
+    }
+  }
+  return ratingCountObj
+}
 
 /**
  * findById()
@@ -83,7 +118,16 @@ function countByRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  var movieObj = null;
+  for (var i = 0; i < movies.length; i++) { 
+    if(movies[i].imdbID === id) { 
+      movieObj = movies[i];
+    } 
+  }
+  return movieObj
+}
+findById(exampleMovies,"tt1979376")
 
 /**
  * filterByGenre()
